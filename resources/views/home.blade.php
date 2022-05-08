@@ -17,6 +17,10 @@
                     {{ __('You are logged in!') }}
                 </div>
             </div>
+
+            <div class="card">
+                <a href="{{ route('admin.posts.index') }}">Vai alla lista dei post</a>
+            </div>
         </div>
     </div>
 </div>
