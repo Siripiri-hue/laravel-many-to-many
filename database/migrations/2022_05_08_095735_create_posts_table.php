@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->string('slug', 150);
             $table->string('thumb',255)->nullable();
             $table->longText('content');
-            $table->date('published_at');
+            $table->date('published_at')->nullable();
             $table->timestamps();
         });
     }
