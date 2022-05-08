@@ -13,6 +13,12 @@
             <div>{{ $post->content }}</div>
             <div>{{ $post->published_at }}</div>
             <div><a href="{{ route('admin.posts.edit', $post) }}">Modifica post</a></div>
+            <form class="form-group" action="{{ route('admin.posts.destroy', $post) }}" method="POST">
+                @csrf
+                @method('DELETE')
+
+                <button type="submit">Elimina post</button>
+            </form>
         </li>    
     @endforeach
 </ul>
