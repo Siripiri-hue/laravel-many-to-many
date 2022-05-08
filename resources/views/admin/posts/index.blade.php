@@ -12,6 +12,7 @@
             {{-- <div>{{ $post->slug }}</div> --}}
             <div>{{ $post->content }}</div>
             <div>{{ $post->published_at }}</div>
+            <div><a href="{{ route('admin.posts.edit', $post) }}">Modifica post</a></div>
         </li>    
     @endforeach
 </ul>

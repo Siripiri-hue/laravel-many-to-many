@@ -73,7 +73,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
@@ -83,9 +84,19 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $data = $request->all();
+        
+        $data = $request->validate([
+            'title' => 'required|unique:posts|max:50',
+            'content' => 'required|min:50',
+            'published_at' => 'nullable|before_or_equal:today',
+        ]);
+
+        $post->update($data);
+        
+        return redirect()->route('admin.posts.index');
     }
 
     /**
