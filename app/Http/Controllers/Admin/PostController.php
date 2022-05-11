@@ -45,6 +45,7 @@ class PostController extends Controller
             'title' => 'required|unique:posts|max:50',
             'content' => 'required|min:50',
             'published_at' => 'nullable|before_or_equal:today',
+            'category_id' => 'nullable|exist:categories,id'
         ]);
 
         $data = $request->all();
@@ -94,6 +95,7 @@ class PostController extends Controller
             'title' => 'required|unique:posts|max:50',
             'content' => 'required|min:50',
             'published_at' => 'nullable|before_or_equal:today',
+            'category_id' => 'nullable|exist:categories,id'
         ]);
 
         $post->update($data);

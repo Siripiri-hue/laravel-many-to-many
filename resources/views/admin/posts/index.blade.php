@@ -5,21 +5,37 @@
 
 <a class="btn btn-primary" href="{{ route('admin.posts.create')}}">Crea nuovo post</a>
 
-<ul>
-    @foreach ($posts as $post)
-        <li class="card">
-            <h2>{{ $post->title }}</h2>
-            {{-- <div>{{ $post->slug }}</div> --}}
-            <div>{{ $post->content }}</div>
-            <div>{{ $post->published_at }}</div>
-            <div><a href="{{ route('admin.posts.edit', $post) }}">Modifica post</a></div>
-            <form class="form-group" action="{{ route('admin.posts.destroy', $post) }}" method="POST">
-                @csrf
-                @method('DELETE')
+<table> 
+    <thead> 
+        <tr> 
+            <th>Title</th> 
+            <th>Slug</th>
+            <th>Content</th> 
+            <th>Published At</th> 
+            <th>Modifica</th>
+            <th>Elimina</th>
+        </tr> 
+    </thead>
+    
+    <tbody> 
+        @foreach ($posts as $post)
+        <tr> 
+            <td>{{ $post->title }}</td> 
+            <td>{{ $post->slug }}</td>
+            <td>{{ $post->content }}</td> 
+            <td>{{ $post->published_at }}</td> 
+            <td><a href="{{ route('admin.posts.edit', $post) }}">Modifica post</a></td> 
+            <td>
+                <form class="form-group" action="{{ route('admin.posts.destroy', $post) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+    
+                    <button type="submit">Elimina post</button>
+                </form>
+            </td>
+        </tr>
+        @endforeach 
+    </tbody> 
+</table>
 
-                <button type="submit">Elimina post</button>
-            </form>
-        </li>    
-    @endforeach
-</ul>
 @endsection
