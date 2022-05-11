@@ -14,6 +14,18 @@
     </div>
 
     <div class="form-group">
+        <select class="custom-select" name="category_id">
+            @foreach ($categories as $cat)
+                <option value="{{ $cat->id }}" {{ old('category_id') == 'category_id' ?: 'selected'}}>{{ $cat->name }}</option>
+            @endforeach
+        </select>
+
+        @error('category_id')
+            {{ $message }}
+        @enderror
+    </div>
+
+    <div class="form-group">
         <label for="content">Corpo del post</label>
         <textarea class="form-control" id="content" name="content" rows="5">{{ old('content'), "Scrivi qui il tuo post"}}</textarea>
 
