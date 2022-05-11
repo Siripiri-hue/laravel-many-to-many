@@ -18,7 +18,7 @@
         <select class="custom-select" name="category_id">
             <option value="">Seleziona un'opzione</option>
             @foreach ($categories as $cat)
-                <option value="{{ $cat->id }}" {{ ( old('category_id') == $cat->id ) ? 'selected' : '' }}> 
+            <option value="{{ $cat->id }}" {{ ( old('category_id') == $cat->id ) ? 'selected' : '' }}>
                     {{ $cat->name }}
                 </option>
             @endforeach
@@ -40,7 +40,7 @@
 
     <div class="form-group">
         <label class="active" for="published_at">Selezionare data di pubblicazione:</label>
-        <input type="date" id="published_at" name="published_at" value="{{ old('published_at', date('Y-m-d')) }}">
+        <input type="date" id="published_at" name="published_at" value="{{ old('published_at') }}">
 
         @error('published_at')
             {{ $message }}
