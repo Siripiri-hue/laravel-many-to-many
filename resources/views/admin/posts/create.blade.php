@@ -18,7 +18,7 @@
         <select class="custom-select" name="category_id">
             <option value="">Seleziona un'opzione</option>
             @foreach ($categories as $cat)
-                <option value="{{ $cat->id }}" {{ ( old('category_id') == $cat->id ) ? 'selected' : '' }}> 
+            <option value="{{ $cat->id }}" {{ ( old('category_id') == $cat->id ) ? 'selected' : '' }}>
                     {{ $cat->name }}
                 </option>
             @endforeach
