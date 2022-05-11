@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <h1>Lista dei post</h1>
 
 <a class="btn btn-primary" href="{{ route('admin.posts.create')}}">Crea nuovo post</a>
@@ -10,8 +11,9 @@
         <tr> 
             <th>Title</th> 
             <th>Slug</th>
-            <th>Content</th> 
+            {{-- <th>Content</th>  --}}
             <th>Published At</th> 
+            <th>Category</th>
             <th>Modifica</th>
             <th>Elimina</th>
         </tr> 
@@ -19,11 +21,13 @@
     
     <tbody> 
         @foreach ($posts as $post)
+        
         <tr> 
             <td>{{ $post->title }}</td> 
             <td>{{ $post->slug }}</td>
-            <td>{{ $post->content }}</td> 
+            {{-- <td>{{ $post->content }}</td>  --}}
             <td>{{ $post->published_at }}</td> 
+            <td>{{ $post->category ? $post->category->name : '' }}</td>
             <td><a href="{{ route('admin.posts.edit', $post) }}">Modifica post</a></td> 
             <td>
                 <form class="form-group" action="{{ route('admin.posts.destroy', $post) }}" method="POST">
