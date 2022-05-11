@@ -17,7 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('published_at', 'desc')->get();
+        $posts = Post::with('category')->orderBy('published_at', 'desc')->get();
 
         return view('admin.posts.index', compact('posts'));
     }
@@ -30,6 +30,7 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
+
         return view('admin.posts.create', compact('categories'));
     }
 
@@ -42,10 +43,11 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'title' => 'required|unique:posts|max:50',
-            'content' => 'required|min:50',
+            'title' => 'required|max:50',
+            'slug' => 'unique:posts',
+            'content' => 'required',
             'published_at' => 'nullable|before_or_equal:today',
-            'category_id' => 'nullable|exist:categories,id'
+            'category_id' => 'nullable|exists:categories,id'
         ]);
 
         $data = $request->all();
@@ -77,7 +79,9 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::findOrFail($id);
-        return view('admin.posts.edit', compact('post'));
+        $categories = Category::all(); 
+
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -92,10 +96,11 @@ class PostController extends Controller
         $data = $request->all();
         
         $data = $request->validate([
-            'title' => 'required|unique:posts|max:50',
+            'title' => 'required|max:50',
+            'slug' => 'unique:posts',
             'content' => 'required|min:50',
             'published_at' => 'nullable|before_or_equal:today',
-            'category_id' => 'nullable|exist:categories,id'
+            'category_id' => 'nullable|exists:categories,id'
         ]);
 
         $post->update($data);

@@ -15,8 +15,12 @@
 
     <div class="form-group">
         <select class="custom-select" name="category_id">
+            <option value="">Seleziona un'opzione</option>
             @foreach ($categories as $cat)
-                <option value="{{ $cat->id }}" {{ old('category_id') == 'category_id' ?: 'selected'}}>{{ $cat->name }}</option>
+                <option value="{{ $cat->id }}" > 
+                    {{ (old('category_id') && old('category_id') == 'category_id') ? 'selected' : '' }}
+                    {{ $cat->name }}
+                </option>
             @endforeach
         </select>
 
