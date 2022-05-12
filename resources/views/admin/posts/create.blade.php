@@ -31,6 +31,19 @@
         @enderror
     </div>
 
+    {{-- tags --}}
+    @foreach ($tags as $tag)
+        <div class="form-group form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="tags-{{ $tag->id }}" value="{{ $tag->id }}" id="{{ $tag->id }}" name="tags[]" 
+                {{ (is_array(old('tags')) && in_array($tag->id, old('tags'))) ? ' checked' : '' }} />
+            <label class="form-check-label" for="tags-{{ $tag->id }}">{{ $tag->name }}</label>
+        </div>
+
+        @error('tags')
+            <div>{{ $message }}</div>
+        @enderror
+    @endforeach
+
     {{-- body --}}
     <div class="form-group">
         <label for="content">Contenuto del post *</label>
