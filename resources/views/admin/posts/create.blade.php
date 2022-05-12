@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<form action="{{ route('admin.posts.store') }}" method="POST">
+<form action="{{ route('admin.posts.store') }}" method="POST" class="p-4">
     @csrf
     
+    {{-- titolo --}}
     <div class="form-group">
         <label for="title">Titolo *</label>
         <input class="form-control" type="text" name="title" id="title" value="{{ old('title') }}" placeholder="Aggiungi un titolo">
@@ -13,6 +14,7 @@
         @enderror
     </div>
 
+    {{-- categorie --}}
     <div class="form-group">
         <label for="category_id">Selezionare una categoria</label>
         <select class="custom-select" name="category_id">
@@ -29,6 +31,7 @@
         @enderror
     </div>
 
+    {{-- body --}}
     <div class="form-group">
         <label for="content">Contenuto del post *</label>
         <textarea class="form-control" id="content" name="content" rows="5">{{ old('content', 'Scrivi qui il tuo post') }}</textarea>
@@ -38,6 +41,7 @@
         @enderror
     </div>
 
+    {{-- data --}}
     <div class="form-group">
         <label class="active" for="published_at">Selezionare data di pubblicazione:</label>
         <input type="date" id="published_at" name="published_at" value="{{ old('published_at') }}">
@@ -47,6 +51,7 @@
         @enderror
     </div>
 
+    {{-- button --}}
     <button type="submit" class="btn btn-primary">Submit</button>
 
 </form>

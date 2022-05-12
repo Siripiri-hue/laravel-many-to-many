@@ -2,21 +2,22 @@
 
 @section('content')
 
-<h1>Lista dei post</h1>
+<h1 class="text-center">Lista dei post</h1>
 
-<a class="btn btn-primary" href="{{ route('admin.posts.create')}}">Crea nuovo post</a>
+<a class="my-4 btn btn-primary justify-content-end" href="{{ route('admin.posts.create')}}">Crea nuovo post</a>
 
-<table> 
+<table class="table table-striped" > 
     <thead> 
-        <tr> 
-            <th>Title</th> 
-            <th>Slug</th>
-            {{-- <th>Content</th>  --}}
-            <th>Published At</th> 
-            <th>Category</th>
-            <th>Tags</th>
-            <th>Modifica</th>
-            <th>Elimina</th>
+        <tr class="text-center"> 
+            <th scope="col">Title</th> 
+            <th scope="col">Slug</th>
+            {{-- <th scope="col">Content</th>  --}}
+            <th scope="col">Created</th>
+            <th scope="col">Published</th> 
+            <th scope="col">Category</th>
+            <th scope="col">Tags</th>
+            <th scope="col">Modifica</th>
+            <th scope="col">Elimina</th>
         </tr> 
     </thead>
     
@@ -25,10 +26,11 @@
 
         {{-- @dd($post) --}}
         
-        <tr> 
+        <tr scope="row"> 
             <td>{{ $post->title }}</td> 
             <td>{{ $post->slug }}</td>
             {{-- <td>{{ $post->content }}</td>  --}}
+            <td>{{ $post->created_at }}</td> 
             <td>{{ $post->published_at }}</td> 
             <td>{{ $post->category ? $post->category->name : '' }}</td>
             <td>
