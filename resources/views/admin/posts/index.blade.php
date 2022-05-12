@@ -14,6 +14,7 @@
             {{-- <th>Content</th>  --}}
             <th>Published At</th> 
             <th>Category</th>
+            <th>Tags</th>
             <th>Modifica</th>
             <th>Elimina</th>
         </tr> 
@@ -21,6 +22,8 @@
     
     <tbody> 
         @foreach ($posts as $post)
+
+        {{-- @dd($post) --}}
         
         <tr> 
             <td>{{ $post->title }}</td> 
@@ -28,6 +31,11 @@
             {{-- <td>{{ $post->content }}</td>  --}}
             <td>{{ $post->published_at }}</td> 
             <td>{{ $post->category ? $post->category->name : '' }}</td>
+            <td>
+                @foreach ($post->tags as $tag )
+                    <span>{{ $tag->name }}</span>
+                @endforeach
+            </td>
             <td><a href="{{ route('admin.posts.edit', $post) }}">Modifica post</a></td> 
             <td>
                 <form class="form-group" action="{{ route('admin.posts.destroy', $post) }}" method="POST">

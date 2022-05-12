@@ -16,7 +16,6 @@ class PostSeeder extends Seeder
     public function run(Faker $faker)
     {
         $tagID = Tag::all()->pluck('id')->all();
-        $randomTags = $faker->randomElements($tagID, 2);
 
         for ($i = 0; $i < 100; $i++) {
             $post = new Post();
@@ -25,6 +24,7 @@ class PostSeeder extends Seeder
             $post->content = $faker->paragraphs(3, true);
             $post->published_at = $faker->optional()->dateTimeBetween('-1 week', 'now');
             $post->save();
+            $randomTags = $faker->randomElements($tagID, 2);
             $post->tags()->attach($randomTags);            
         }
     }
