@@ -50,7 +50,7 @@ class PostController extends Controller
             'content' => 'required',
             'published_at' => 'nullable|before_or_equal:today',
             'category_id' => 'nullable|exists:categories,id',
-            'tag_id' => 'nullable|exists:tags,id',
+            'tags' => 'nullable|exists:tags,id',
         ]);
 
         $data = $request->all();
@@ -105,7 +105,7 @@ class PostController extends Controller
             'content' => 'required|min:50',
             'published_at' => 'nullable|before_or_equal:today',
             'category_id' => 'nullable|exists:categories,id',
-            'tag_id' => 'nullable|exists:tags,id',
+            'tags' => 'nullable|exists:tags,id',
         ]);
 
         $data = $request->all();
